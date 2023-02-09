@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   output: {
-    publicPath: "http://localhost:3040/",
+    publicPath: "http://localhost:3000/",
   },
 
   resolve: {
@@ -10,7 +10,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 3040,
+    port: 3000,
     historyApiFallback: true,
   },
 
