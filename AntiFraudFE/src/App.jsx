@@ -29,19 +29,23 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path='signUp' element={<SignUp />} />
           <Route path='signIn' element={<SignIn setUser={setUser} />} />
-            <Route path='/cardboard/*' element={
+        </Route>
+            <Route path='/auth/*' element={
                     <ProtectedRoute user={user}>
                         <Routes>
                             <Route path='/' element={<SharedCardLayout />}>
-                                <Route index element={<Dashboard />} />
-                                <Route path='/users' element={<User/>} />
+                                <Route path='users' element={<User/>} />
+                                <Route path='dashboard' element={<Dashboard user={user}/>} />
+                                <Route path='cards' element={<Card/>}/>
+                                <Route path='transactions' element={<Transaction/>} />
+                                <Route path='ip' element={<IpAddress/>} />
                             </Route>
                         </Routes>
                     </ProtectedRoute>
                 }
             />
 
-        </Route>
+
 
         <Route path='*' element={<Error />} />
       </Routes>
@@ -50,16 +54,6 @@ const App = () => {
 };
 ReactDOM.render(<App />, document.getElementById("app"));
 
-{/*<Route path='/dashboard' element={<Dashboard user={user} />}>*/}
-{/*  <Route index element={<CardNavbar />} />*/}
-// {/*  <Route path='*/users' element={<User/>} />*/}
-//   {/*  <Route path='*/cards' element={<Card/>} />*/}
-//     {/*  <Route path='*/transactions' element={<Transaction/>} />*/}
-//       {/*  <Route path='*/ip' element={<IpAddress/>} />*/}
 
-        {/*  <Route*/}
-        {/*    path=':transactionId'*/}
-        {/*    element={<SingleTransaction />}*/}
-        {/*  />*/}
 
-        {/*</Route>*/}
+

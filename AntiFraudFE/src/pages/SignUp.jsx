@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const SignUp = () => {
   return (
     <section>
-      <h3>SignUp Page</h3>
+      <h4>SignUp Page</h4>
       <Link to='/' className='btn'>
         Home
       </Link>

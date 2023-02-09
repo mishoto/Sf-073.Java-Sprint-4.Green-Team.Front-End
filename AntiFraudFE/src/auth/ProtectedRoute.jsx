@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children, user }) => {
   if (!user) {
-    return <Navigate to='/'/>;
+    return <Navigate to='/signUp' replace/>;
   }
   return children;
 };

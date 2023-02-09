@@ -2,7 +2,7 @@ import React from 'react'
 
 const IpAddress = () => {
   return (
-    <div>IpAddress</div>
+    <h4>Hello from IpAddress</h4>
   )
 }
 
