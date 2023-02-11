@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "https://sf073-green-fe.up.railway.app",
   },
 
   resolve: {
