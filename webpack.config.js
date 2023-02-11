@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   output: {
-    publicPath: "https://sf073-green-fe.up.railway.app",
+    publicPath: "https://sf073-green-fe.up.railway.app/",
   },
 
   resolve: {
