@@ -1,6 +1,10 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode:"production",
+  entry:{
+    main: "./src/index"
+  },
   output: {
     publicPath: "https://sf073-green-fe.up.railway.app/",
   },
