@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Axios from "axios";
 
 const SignUp = () => {
@@ -7,11 +7,14 @@ const SignUp = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             await Axios.post("http://localhost:28852/api/auth/user", {name, username, password})
             console.log("User was successfully created.")
+            navigate("/")
         } catch (e) {
             console.log(e.response)
         }
@@ -33,6 +36,7 @@ const SignUp = () => {
                         type='text'
                         className='form-input'
                         id='name'
+                        placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -45,6 +49,7 @@ const SignUp = () => {
                         type='text'
                         className='form-input'
                         id='username'
+                        placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
@@ -56,6 +61,7 @@ const SignUp = () => {
                     <input
                         type='password'
                         className='form-input'
+                        placeholder="Password"
                         id='password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
