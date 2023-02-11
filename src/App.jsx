@@ -6,20 +6,15 @@ import DispatchContext from "./DispatchContext"
 import StateContext from "./StateContext"
 
 import ProtectedRoute from "./auth/ProtectedRoute";
-import Transaction from "./components/Transaction";
-import SingleTransaction from "./components/SingleTransaction";
-import IpAddress from "./components/IpAddress";
-import User from "./components/User"
 import SignIn from './pages/SignIn';
 import SignUp from "./pages/SignUp";
 import "./index.css";
 import SharedNavbarLayout from "./shared/SharedNavbarLayout";
 import Home from "./pages/Home";
-import SharedCardLayout from "./shared/SharedCardLayout";
-import Card from "./components/Card";
-import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
-import CardNavbar from "./components/CardNavbar";
+import AdminPanel from "./pages/AdminPanel";
+import SupportPanel from "./pages/SupportPanel";
+import MerchantPanel from "./pages/MerchantPanel";
 
 
 const App = () => {
@@ -69,25 +64,45 @@ const App = () => {
                             <Route path='signUp' element={<SignUp/>}/>
                             <Route path='signIn' element={<SignIn/>}/>
                         </Route>
-                        <Route path='/auth/' element={
+
+                        {/*admin*/}
+                        <Route path='/admin' element={
                             <ProtectedRoute user={state.user}>
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'ADMINISTRATOR'
-                                            ? <SharedCardLayout/>
+                                            ? <AdminPanel/>
                                             : <Home/>}>
-                                        <Route path='users' element={<User/>}/>
-                                        <Route path='dashboard' element={<Dashboard/>}/>
-                                        <Route path='cards' element={<Card/>}/>
-                                        <Route path='transactions' element={<Transaction/>}/>
-                                        <Route path='ip' element={<IpAddress/>}/>
                                     </Route>
                                 </Routes>
                             </ProtectedRoute>
-                        }
-                        />
+                        }/>
 
+                        {/*support*/}
+                        <Route path='/support' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'SUPPORT'
+                                            ? <SupportPanel/>
+                                            : <Home/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
 
+                        {/*merchant*/}
+                        <Route path='/merchant' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'MERCHANT'
+                                            ? <MerchantPanel/>
+                                            : <Home/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
                         <Route path='*' element={<Error/>}/>
                     </Routes>
                 </BrowserRouter>
