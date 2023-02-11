@@ -1,13 +1,17 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   mode:"production",
 
   entry:{
-    main: "./src/index"
+    app: "./src/index.js"
   },
   output: {
-    publicPath: "https://sf073-green-fe.up.railway.app/",
+    filename:"[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+    publicPath: "auto",
   },
 
   resolve: {
