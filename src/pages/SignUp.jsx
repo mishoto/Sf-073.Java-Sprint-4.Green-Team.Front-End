@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import Axios from "axios";
+Axios.defaults.baseURL = "http://localhost:28852"
 
 const SignUp = () => {
     const [name, setName] = useState();
@@ -12,7 +13,7 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await Axios.post("http://localhost:28852/api/auth/user", {name, username, password})
+            await Axios.post("/api/auth/user", {name, username, password})
             console.log("User was successfully created.")
             navigate("/")
         } catch (e) {
@@ -21,12 +22,12 @@ const SignUp = () => {
     };
 
     return (
-        <section>
-            <h4>SignUp Page</h4>
-            <Link to='/' className='btn'>
-                Home
-            </Link>
-
+        <section className="section">
+            <div>
+                <Link to='/' className='btn'>
+                    Home
+                </Link>
+            </div>
             <form className='form' onSubmit={handleSubmit}>
                 <div className='form-row'>
                     <label htmlFor='name' className='form-label'>
@@ -38,7 +39,7 @@ const SignUp = () => {
                         id='name'
                         placeholder="Name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
                 <div className='form-row'>
@@ -51,7 +52,7 @@ const SignUp = () => {
                         id='username'
                         placeholder="Username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={e => setUsername(e.target.value)}
                     />
                 </div>
                 <div className='form-row'>
@@ -64,19 +65,15 @@ const SignUp = () => {
                         placeholder="Password"
                         id='password'
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </div>
                 <button type='submit' className='btn btn-block'>
                     Sing Up
                 </button>
             </form>
-
-
         </section>
     );
-
-
 }
 
 export default SignUp

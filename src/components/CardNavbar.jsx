@@ -14,7 +14,7 @@ const CardNavbar = () => {
                         <Link to='dashboard'>Dashboard</Link>
                     </li>
                     <li>
-                        <Link to='users'>Users</Link>
+                        <Link to='users'>Users454545</Link>
                     </li>
                     <li>
                         <Link to='cards'>Cards</Link>

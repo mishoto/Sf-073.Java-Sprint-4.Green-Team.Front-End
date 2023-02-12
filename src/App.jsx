@@ -1,57 +1,121 @@
-import React, {useState} from "react";
+import React, {useState, useReducer, useEffect} from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {useImmerReducer} from "use-immer"
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import DispatchContext from "./DispatchContext"
+import StateContext from "./StateContext"
+
 import ProtectedRoute from "./auth/ProtectedRoute";
-import Transaction from "./components/Transaction";
-import SingleTransaction from "./components/SingleTransaction";
-import IpAddress from "./components/IpAddress";
-import User from "./components/User"
 import SignIn from './pages/SignIn';
 import SignUp from "./pages/SignUp";
-
 import "./index.css";
 import SharedNavbarLayout from "./shared/SharedNavbarLayout";
 import Home from "./pages/Home";
-import SharedCardLayout from "./shared/SharedCardLayout";
-import Card from "./components/Card";
-import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
-import CardNavbar from "./components/CardNavbar";
+import AdminPanel from "./pages/AdminPanel";
+import SupportPanel from "./pages/SupportPanel";
+import MerchantPanel from "./pages/MerchantPanel";
 
 
 const App = () => {
-  const [user, setUser] = useState(null);
+    const initialState = {
+        loggedIn: Boolean(localStorage.getItem("appUsername")),
+        flashMessages: [],
+        user: {
+            username: localStorage.getItem("appUsername"),
+            password: localStorage.getItem("appPassword"),
+            role: localStorage.getItem("appRole")
+        }
+    }
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<SharedNavbarLayout />}>
-          <Route index element={<Home />} />
-          <Route path='signUp' element={<SignUp />} />
-          <Route path='signIn' element={<SignIn setUser={setUser} />} />
-        </Route>
-            <Route path='/auth/*' element={
-                    <ProtectedRoute user={user}>
-                        <Routes>
-                            <Route path='/' element={<SharedCardLayout />}>
-                                <Route path='users' element={<User/>} />
-                                <Route path='dashboard' element={<Dashboard user={user}/>} />
-                                <Route path='cards' element={<Card/>}/>
-                                <Route path='transactions' element={<Transaction/>} />
-                                <Route path='ip' element={<IpAddress/>} />
-                            </Route>
-                        </Routes>
-                    </ProtectedRoute>
-                }
-            />
+    function ourReducer(draft, action) {
+        switch (action.type) {
+            case "login":
+                draft.loggedIn = true
+                draft.user = action.data
+                return
+            case "logout":
+                draft.loggedIn = false
+                return
+        }
+    }
 
+    const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
-        <Route path='*' element={<Error />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    useEffect(() => {
+        if (state.loggedIn) {
+            localStorage.setItem("appUsername", state.user.username)
+            localStorage.setItem("appPassword", state.user.password)
+            localStorage.setItem("appRole", state.user.role)
+        } else {
+            localStorage.removeItem("appUsername")
+            localStorage.removeItem("appPassword")
+            localStorage.removeItem("appRole")
+        }
+    }, [state.loggedIn])
+
+    return (
+        <StateContext.Provider value={state}>
+            <DispatchContext.Provider value={dispatch}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={<SharedNavbarLayout/>}>
+                            <Route index element={<Home/>}/>
+                            <Route path='signUp' element={<SignUp/>}/>
+                            <Route path='signIn' element={<SignIn/>}/>
+                        </Route>
+
+                        {/*admin*/}
+                        <Route path='/admin' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <AdminPanel/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+
+                        {/*support*/}
+                        <Route path='/support' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'SUPPORT'
+                                            ? <SupportPanel/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+
+                        {/*merchant*/}
+                        <Route path='/merchant' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'MERCHANT'
+                                            ? <MerchantPanel/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path='*' element={<Error/>}/>
+
+                    </Routes>
+                </BrowserRouter>
+            </DispatchContext.Provider>
+        </StateContext.Provider>
+    );
 };
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App/>, document.getElementById("app"));
+
+if (module.hot) {
+    module.hot.accept()
+}
 
 
 
