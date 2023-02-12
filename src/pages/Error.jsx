@@ -5,7 +5,7 @@ const Error = () => {
   return (
     <section className='section'>
       <h2>404</h2>
-      <p>page not found</p>
+      <p>page not found or you are unauthorized to view this resource</p>
       <Link to='/' className='btn'>
         Home
       </Link>

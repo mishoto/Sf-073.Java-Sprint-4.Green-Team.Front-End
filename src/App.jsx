@@ -72,7 +72,7 @@ const App = () => {
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'ADMINISTRATOR'
                                             ? <AdminPanel/>
-                                            : <Home/>}>
+                                            : <Error/>}>
                                     </Route>
                                 </Routes>
                             </ProtectedRoute>
@@ -85,7 +85,7 @@ const App = () => {
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
                                             ? <SupportPanel/>
-                                            : <Home/>}>
+                                            : <Error/>}>
                                     </Route>
                                 </Routes>
                             </ProtectedRoute>
@@ -98,12 +98,13 @@ const App = () => {
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'MERCHANT'
                                             ? <MerchantPanel/>
-                                            : <Home/>}>
+                                            : <Error/>}>
                                     </Route>
                                 </Routes>
                             </ProtectedRoute>
                         }/>
                         <Route path='*' element={<Error/>}/>
+
                     </Routes>
                 </BrowserRouter>
             </DispatchContext.Provider>

@@ -1,12 +1,18 @@
-import React from 'react'
 import {Link} from "react-router-dom";
+import React, {useContext} from 'react'
+import StateContext from "../StateContext"
 
 const SupportPanel = () => {
+    const appState = useContext(StateContext)
+
     return (
         <nav className='navbar'>
             <div className='nav-center'>
                 <nav className='nav-header'>
                     <ul className='links'>
+                        <li>
+                            Hello, <strong>{appState.user.username}</strong>
+                        </li>
                         <li>
                             <Link to='/'>Home</Link>
                         </li>

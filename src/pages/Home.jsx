@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from "react"
 
 const Home = () => {
-  return (
-    <h3>Home Page</h3>
-  )
+
+
+
+    return (
+        <div>
+            <h3>Home Page</h3>
+        </div>
+    )
 }
 
 export default Home
