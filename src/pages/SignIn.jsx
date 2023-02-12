@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import DispatchContext from "../DispatchContext";
 import Axios from "axios"
 
-Axios.defaults.baseURL = "http://localhost:28852"
+Axios.defaults.baseURL = "https://sf073-green-be-prod.up.railway.app/"
 
 const SignIn = () => {
     const appDispatch = useContext(DispatchContext)
@@ -15,7 +15,7 @@ const SignIn = () => {
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            const response = await Axios.post("/api/auth/login", {username, password})
+            const response = await Axios.post("api/auth/login", {username, password})
             if (response.data) {
                 appDispatch({type: "login", data: response.data})
                 console.log("User logged in.")
