@@ -1,9 +1,17 @@
 import React, {useContext} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import StateContext from "../StateContext"
+import DispatchContext from "../DispatchContext"
 
 const AdminPanel = () => {
     const appState = useContext(StateContext)
+    const appDispatch = useContext(DispatchContext)
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        appDispatch({type: "logout"})
+        navigate("/")
+    }
 
     return (
         <nav className='navbar'>
@@ -29,6 +37,11 @@ const AdminPanel = () => {
                         </ul>
                     </div>
                 </nav>
+                <div>
+                    <button onClick={handleLogout} className="btn btn-block">
+                        Sign Out
+                    </button>
+                </div>
             </div>
         </nav>
     );

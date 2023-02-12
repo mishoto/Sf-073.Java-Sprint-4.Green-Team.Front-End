@@ -1,9 +1,18 @@
 import {Link} from "react-router-dom";
 import React, {useContext} from 'react'
 import StateContext from "../StateContext"
+import DispatchContext from "../DispatchContext"
+import {useNavigate} from 'react-router-dom';
 
 const SupportPanel = () => {
     const appState = useContext(StateContext)
+    const appDispatch = useContext(DispatchContext)
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        appDispatch({type: "logout"})
+        navigate("/")
+    }
 
     return (
         <nav className='navbar'>
@@ -30,6 +39,11 @@ const SupportPanel = () => {
                         </li>
                     </ul>
                 </nav>
+                <div>
+                    <button onClick={handleLogout} className="btn btn-block">
+                        Sign Out
+                    </button>
+                </div>
             </div>
         </nav>
     );
