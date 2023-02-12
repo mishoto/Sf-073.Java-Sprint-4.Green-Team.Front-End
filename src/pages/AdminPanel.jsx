@@ -1,9 +1,17 @@
 import React, {useContext} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import StateContext from "../StateContext"
+import DispatchContext from "../DispatchContext"
 
 const AdminPanel = () => {
     const appState = useContext(StateContext)
+    const appDispatch = useContext(DispatchContext)
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        appDispatch({type: "logout"})
+        navigate("/")
+    }
 
     return (
         <nav className='navbar'>
@@ -15,10 +23,7 @@ const AdminPanel = () => {
                                Hello, <strong>{appState.user.username}</strong>
                             </li>
                             <li>
-                                <Link to='/'>Home</Link>
-                            </li>
-                            <li>
-                                <Link to='dashboard'>See all users</Link>
+                                <Link to='dashboard'>All users</Link>
                             </li>
                             <li>
                                 <Link to='users'>Change user status</Link>
@@ -29,6 +34,11 @@ const AdminPanel = () => {
                         </ul>
                     </div>
                 </nav>
+                <div>
+                    <button onClick={handleLogout} className="btn btn-block">
+                        Sign Out
+                    </button>
+                </div>
             </div>
         </nav>
     );
