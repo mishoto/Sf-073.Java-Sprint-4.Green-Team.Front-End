@@ -306,12 +306,12 @@ Navbar
 ===============
 */
 nav {
-  background-image: url("./images/Untitled-design-2020-09-09T124652.919.png");
+  /* background-image: url("./images/Untitled-design-2020-09-09T124652.919.png");
   height: 73px;
   background-size: cover;
-  background-position: center;
-  /* background: var(--clr-white);
-  box-shadow: var(--light-shadow); */
+  background-position: center; */
+  background: var(--clr-white);
+  box-shadow: var(--light-shadow);
   /* display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -340,10 +340,10 @@ nav {
   color: var(--clr-primary-1);
   transform: rotate(90deg);
 }
-
+/* 
 .logo {
   height: 20px;
-}
+} */
 
 .links a {
   color: var(--clr-grey-3);
