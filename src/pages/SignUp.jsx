@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import Axios from "axios";
-Axios.defaults.baseURL = "http://localhost:28852"
+Axios.defaults.baseURL = "http://localhost:8080"
 
 const SignUp = () => {
     const [name, setName] = useState();

@@ -15,6 +15,7 @@ import Error from "./pages/Error";
 import AdminPanel from "./pages/AdminPanel";
 import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
+import UserList from "./components/UserList";
 
 
 const App = () => {
@@ -77,6 +78,20 @@ const App = () => {
                                 </Routes>
                             </ProtectedRoute>
                         }/>
+
+                        <Route path='/allUsers' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <UserList/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+
+
 
                         {/*support*/}
                         <Route path='/support' element={
