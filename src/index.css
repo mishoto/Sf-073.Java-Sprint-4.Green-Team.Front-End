@@ -307,7 +307,7 @@ Navbar
 */
 nav {
   /* background-image: url("./images/Untitled-design-2020-09-09T124652.919.png");
-  height: 73px;
+  height: 50px;
   background-size: cover;
   background-position: center; */
   background: var(--clr-white);
@@ -315,9 +315,16 @@ nav {
   /* display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 73px;
+   height: 73px; 
   background-size: cover;
   background-position: center; */
+}
+
+.logoNav {
+  background-image: url("./images/Untitled-design-2020-09-09T124652.919.png");
+  height: 75px;
+  background-size: cover;
+  background-position: center;
 }
 
 .nav-header {
@@ -325,6 +332,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  margin-top: 50px;
 }
 
 .nav-toggle {
