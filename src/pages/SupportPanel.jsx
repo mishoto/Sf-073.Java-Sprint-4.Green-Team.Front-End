@@ -23,9 +23,6 @@ const SupportPanel = () => {
                             Hello, <strong>{appState.user.username}</strong>
                         </li>
                         <li>
-                            <Link to='/'>Home</Link>
-                        </li>
-                        <li>
                             <Link to='dashboard'>All users</Link>
                         </li>
                         <li>

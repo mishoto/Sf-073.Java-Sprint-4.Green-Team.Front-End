@@ -23,10 +23,7 @@ const AdminPanel = () => {
                                Hello, <strong>{appState.user.username}</strong>
                             </li>
                             <li>
-                                <Link to='/'>Home</Link>
-                            </li>
-                            <li>
-                                <Link to='dashboard'>See all users</Link>
+                                <Link to='dashboard'>All users</Link>
                             </li>
                             <li>
                                 <Link to='users'>Change user status</Link>
