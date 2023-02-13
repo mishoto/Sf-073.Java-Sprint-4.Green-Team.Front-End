@@ -1,7 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import StateContext from "../StateContext";
 import Axios from "axios";
-import DispatchContext from "../DispatchContext";
 
 const URL = "https://sf073-green-be-prod.up.railway.app/"
 
@@ -9,30 +8,25 @@ const AllUsers = () => {
     const appState = useContext(StateContext)
     const username = appState.user.username;
     const password = appState.user.password;
-    const role = appState.user.role;
-    const [users, setUsers] = useState(StateContext)
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
-        async function fetchUsers() {
+        async function fetchUsers(username, password) {
             try {
                 const response = await Axios.get(`${URL}api/auth/list`, {
                     withCredentials: true,
-                    auth: {
-                        username: 'admin',
-                        password: 'pass',
-                    }
-                });
+                    auth: {username: username, password: 'pass'},
+                })
+                console.log(response.data)
                 setUsers(response.data)
-                // console.log(response.data)
             } catch (e) {
                 console.log(e.response.data)
             }
         }
 
-        fetchUsers().then(() => {
-        })
-    }, [appState])
+        fetchUsers(username, password)
 
+    }, [appState])
 
     return (
         <section className="section">
@@ -54,20 +48,18 @@ const AllUsers = () => {
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    {/*{Object.entries(users).map(([key, values]) => {*/}
-                                    {/*    */}
-                                    {/*    return (*/}
-                                    {/*        <tr >*/}
-                                    {/*            <th scope="row" className="scope">.com</th>*/}
-                                    {/*            <td>name</td>*/}
-                                    {/*            <td>name</td>*/}
-                                    {/*            <td>name</td>*/}
-                                    {/*            <td>name</td>*/}
-                                    {/*            /!*<td><a href="#" className="btn btn-primary">Sign Up</a></td>*!/*/}
-                                    {/*        </tr>*/}
-                                    {/*    )*/}
-                                    {/*})}*/}
+                                    {users.map((user) => {
+                                        return (
+                                            <tr>
+                                                <td>{user.id}</td>
+                                                <td>{user.name}</td>
+                                                <td>{user.username}</td>
+                                                <td>{user.role}</td>
+                                                <td></td>
+                                                {/*<td><a href="#" className="btn btn-primary">Sign Up</a></td>*/}
+                                            </tr>
+                                        )
+                                    })}
                                     </tbody>
                                 </table>
                             </div>
