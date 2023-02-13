@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import DispatchContext from "../DispatchContext";
 import Axios from "axios"
 
-Axios.defaults.baseURL = "http://localhost:28852"
+Axios.defaults.baseURL = "https://sf073-green-be-prod.up.railway.app/"
 
 const SignIn = () => {
     const appDispatch = useContext(DispatchContext)
