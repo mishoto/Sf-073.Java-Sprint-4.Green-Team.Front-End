@@ -1,47 +1,38 @@
 import React, {useContext, useState, useEffect} from 'react'
 import StateContext from "../StateContext";
-import {useImmer} from "use-immer";
 import Axios from "axios";
-import {logPlugin} from "@babel/preset-env/lib/debug";
+import DispatchContext from "../DispatchContext";
 
 Axios.defaults.baseURL = "http://localhost:8080"
 
 const AllUsers = () => {
     const appState = useContext(StateContext)
-    const [users, setUsers] = useState([] )
+    const username = appState.user.username;
+    const password = appState.user.password;
+    const role = appState.user.role;
+    const [users, setUsers] = useState()
 
     useEffect(() => {
-        const ourRequest = Axios.CancelToken.source()
-
-        async function fetchPosts() {
+        async function fetchUsers() {
             try {
-                const response = await Axios.get("/api/auth/users")
-                setPosts(response.data)
-                setIsLoading(false)
+                const response = await Axios.get("/api/auth/list", {
+                    withCredentials: true,
+                    auth: {
+                        username: username,
+                        password: password,
+                    }
+                });
+
+                setUsers(response.data)
+                console.log(response)
             } catch (e) {
-                console.log("There was a problem.")
+                console.log(e.response.data)
             }
         }
-        fetchPosts()
-        return () => {
-            ourRequest.cancel()
-        }
-    }, [username])
+        fetchUsers().then(() => {
+        })
+    }, [users])
 
-
-    let response = null;
-
-    async function fetchData() {
-        try {
-             response = await Axios.get("/api/auth/users")
-            console.log(response)
-        } catch (e) {
-            console.log("There was a problem.")
-        }
-    }
-
-
-    console.log(response)
 
     return (
         <section className="section">
