@@ -3,7 +3,7 @@ import StateContext from "../StateContext";
 import Axios from "axios";
 import DispatchContext from "../DispatchContext";
 
-Axios.defaults.baseURL = "http://localhost:8080"
+const URL = "https://sf073-green-be-prod.up.railway.app/"
 
 const AllUsers = () => {
     const appState = useContext(StateContext)
@@ -12,26 +12,26 @@ const AllUsers = () => {
     const role = appState.user.role;
     const [users, setUsers] = useState()
 
-    useEffect(() => {
-        async function fetchUsers() {
-            try {
-                const response = await Axios.get("/api/auth/list", {
-                    withCredentials: true,
-                    auth: {
-                        username: username,
-                        password: password,
-                    }
-                });
-
-                setUsers(response.data)
-                console.log(response)
-            } catch (e) {
-                console.log(e.response.data)
-            }
+    async function fetchUsers() {
+        try {
+            const response = await Axios.get(`${URL}api/auth/list`, {
+                withCredentials: true,
+                auth: {
+                    username: username,
+                    password: password,
+                }
+            });
+            console.log(response.data)
+        } catch (e) {
+            console.log(e.response.data)
         }
-        fetchUsers().then(() => {
+    }
+
+    useEffect(() => {
+        fetchUsers().then((response) => {
+            setUsers(response.data)
         })
-    }, [users])
+    }, [])
 
 
     return (

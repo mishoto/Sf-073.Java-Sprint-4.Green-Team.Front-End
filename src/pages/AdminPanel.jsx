@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import StateContext from "../StateContext"
 import DispatchContext from "../DispatchContext"
+import axios from "axios";
 
 const AdminPanel = () => {
     const appState = useContext(StateContext)
@@ -12,6 +13,15 @@ const AdminPanel = () => {
         appDispatch({type: "logout"})
         navigate("/")
     }
+
+    const request = axios.get("https://sf073-green-be-prod.up.railway.app/",{
+        withCredentials: true,
+        auth: {
+            username : "",
+            password: "",
+        }
+
+    })
 
     return (
         <nav className='navbar'>
