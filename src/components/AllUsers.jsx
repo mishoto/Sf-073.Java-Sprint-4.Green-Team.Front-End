@@ -10,28 +10,28 @@ const AllUsers = () => {
     const username = appState.user.username;
     const password = appState.user.password;
     const role = appState.user.role;
-    const [users, setUsers] = useState()
-
-    async function fetchUsers() {
-        try {
-            const response = await Axios.get(`${URL}api/auth/list`, {
-                withCredentials: true,
-                auth: {
-                    username: username,
-                    password: password,
-                }
-            });
-            console.log(response.data)
-        } catch (e) {
-            console.log(e.response.data)
-        }
-    }
+    const [users, setUsers] = useState(StateContext)
 
     useEffect(() => {
-        fetchUsers().then((response) => {
-            setUsers(response.data)
+        async function fetchUsers() {
+            try {
+                const response = await Axios.get(`${URL}api/auth/list`, {
+                    withCredentials: true,
+                    auth: {
+                        username: 'admin',
+                        password: 'pass',
+                    }
+                });
+                setUsers(response.data)
+                // console.log(response.data)
+            } catch (e) {
+                console.log(e.response.data)
+            }
+        }
+
+        fetchUsers().then(() => {
         })
-    }, [])
+    }, [appState])
 
 
     return (
@@ -54,13 +54,20 @@ const AllUsers = () => {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row" className="scope">.com</th>
-                                        <td>1 Year</td>
-                                        <td>$70.00</td>
-                                        <td>$5.00</td>
-                                        <td><a href="#" className="btn btn-primary">Sign Up</a></td>
-                                    </tr>
+
+                                    {/*{Object.entries(users).map(([key, values]) => {*/}
+                                    {/*    */}
+                                    {/*    return (*/}
+                                    {/*        <tr >*/}
+                                    {/*            <th scope="row" className="scope">.com</th>*/}
+                                    {/*            <td>name</td>*/}
+                                    {/*            <td>name</td>*/}
+                                    {/*            <td>name</td>*/}
+                                    {/*            <td>name</td>*/}
+                                    {/*            /!*<td><a href="#" className="btn btn-primary">Sign Up</a></td>*!/*/}
+                                    {/*        </tr>*/}
+                                    {/*    )*/}
+                                    {/*})}*/}
                                     </tbody>
                                 </table>
                             </div>
