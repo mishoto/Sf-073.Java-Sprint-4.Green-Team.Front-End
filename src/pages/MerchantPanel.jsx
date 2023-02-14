@@ -22,7 +22,7 @@ const MerchantPanel = () => {
                             Hello, <strong>{appState.user.username}</strong>
                         </li>
                         <li>
-                            <Link to='dashboard'>Create transaction</Link>
+                            <Link to='/transaction'>Create transaction</Link>
                         </li>
                     </ul>
                 </nav>
