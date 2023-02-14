@@ -18,6 +18,8 @@ import MerchantPanel from "./pages/MerchantPanel";
 import UserList from "./components/UserList";
 import IpAddress from "./components/IpAddress";
 import SingleTransaction from "./components/SingleTransaction";
+import ChangeStatus from "./components/ChangeStatus";
+
 
 
 const App = () => {
@@ -27,7 +29,9 @@ const App = () => {
         user: {
             username: localStorage.getItem("appUsername"),
             password: localStorage.getItem("appPassword"),
-            role: localStorage.getItem("appRole")
+            role: localStorage.getItem("appRole"),
+            accountUnlocked: localStorage.getItem("appAccountUnlocked"),
+
         }
     }
 
@@ -50,10 +54,12 @@ const App = () => {
             localStorage.setItem("appUsername", state.user.username)
             localStorage.setItem("appPassword", state.user.password)
             localStorage.setItem("appRole", state.user.role)
+            localStorage.setItem("appAccountUnlocked", state.user.accountUnlocked)
         } else {
             localStorage.removeItem("appUsername")
             localStorage.removeItem("appPassword")
             localStorage.removeItem("appRole")
+            localStorage.removeItem("appAccountUnlocked")
         }
     }, [state.loggedIn])
 
@@ -80,19 +86,28 @@ const App = () => {
                                 </Routes>
                             </ProtectedRoute>
                         }/>
-
                         <Route path='/allUsers' element={
                             <ProtectedRoute user={state.user}>
                                 <Routes>
                                     <Route path='/' element={
-                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR' || state.loggedIn && state.user.role === 'SUPPORT'
                                             ? <UserList/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
                             </ProtectedRoute>
                         }/>
-
+                        <Route path='/admin/changeStatus' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <ChangeStatus/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
 
                         {/*support*/}
                         <Route

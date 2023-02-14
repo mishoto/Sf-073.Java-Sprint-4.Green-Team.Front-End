@@ -15,9 +15,8 @@ const AllUsers = () => {
             try {
                 const response = await Axios.get(`${URL}api/auth/list`, {
                     withCredentials: true,
-                    auth: {username: username, password: 'pass'},
+                    auth: {username: username, password: password},
                 })
-                console.log(response.data)
                 setUsers(response.data)
             } catch (e) {
                 console.log(e.response.data)
@@ -55,8 +54,8 @@ const AllUsers = () => {
                                                 <td>{user.name}</td>
                                                 <td>{user.username}</td>
                                                 <td>{user.role}</td>
+                                                <td>{user.unLocked ? "UNLOCKED" : "LOCKED"}</td>
                                                 <td></td>
-                                                {/*<td><a href="#" className="btn btn-primary">Sign Up</a></td>*/}
                                             </tr>
                                         )
                                     })}
