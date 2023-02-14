@@ -2,12 +2,16 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import StateContext from "../StateContext";
 import Axios from "axios";
+import InfoPopUp from "./InfoPopUp";
+import DeleteIPPopup from "./DeleteIPPopup";
 
 const URL = "https://sf073-green-be-prod.up.railway.app/"
 
 const GetAllBannedIps = () => {
     const [bannedIps, setBannedIps] = useState([]);
     const appState = useContext(StateContext);
+    const [buttonPopup, setButtonPopup] = useState(false)
+
 
     useEffect(() => {
         axios.get(`${URL}api/antifraud/suspicious-ip`, {
@@ -56,9 +60,12 @@ const GetAllBannedIps = () => {
                 {bannedIps.map((ip) => (
                     <li key={ip.id} className="banned-ip-item">{ip.ip}
                         <span className="banned-ip-value"></span>
-                        <button type="button" onClick={() => handleDelete(ip.ip)}>
+                        <button type="button" onClick={() => handleDelete(ip.ip) && setButtonPopup(true)}>
                             Unban
                         </button>
+                        <DeleteIPPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                            <p>IP Was Unbanned!</p>
+                        </DeleteIPPopup>
                     </li>
                 ))}
             </ul>
