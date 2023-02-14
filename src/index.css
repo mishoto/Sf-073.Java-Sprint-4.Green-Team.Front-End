@@ -51,7 +51,6 @@ Variables
     --primary-800: #282566;
     --primary-900: #141233;
 
-
     --clr-red-dark: hsl(360, 67%, 44%);
     --clr-red-light: hsl(360, 71%, 66%);
     --clr-green-dark: hsl(125, 67%, 44%);
@@ -72,12 +71,9 @@ Variables
     --green-dark: #0f5132;
 
     --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
     --borderRadius: 0.25rem;
     --letterSpacing: 1px;
@@ -98,12 +94,146 @@ Global Styles
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: var(--clr-grey-10);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-image: url(./images/abstract-technology-background-blue-circuit-board-pattern-vector.jpg);
+    background-size: 1750px;
     color: var(--clr-grey-1);
     line-height: 1.5;
     font-size: 0.875rem;
+}
+
+.ban-ip-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.ban-ip-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.ban-ip-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.ban-ip-form input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.ban-ip-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.banned-ips-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.banned-ips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.ban-ip-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.banned-ips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.banned-ip-item {
+    background-color: lightgray;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.banned-ip-value {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.banned-ip-item button {
+    padding: 5px 10px;
+    background-color: darkred;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.no-banned-ips-message {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 20px;
+}
+.back-button {
+    margin-right: 1750px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button i {
+    margin-right: 10px;
+}
+
+.team-presentation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* margin-top: 50px; */
+}
+
+.member {
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    text-align: center;
+}
+
+.member h3 {
+    margin-top: 30px;
+}
+
+.member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
 }
 
 ul {
@@ -122,6 +252,7 @@ h4 {
     text-transform: capitalize;
     line-height: 1.25;
     margin-bottom: 0.75rem;
+    color: white;
 }
 
 h1 {
@@ -147,7 +278,7 @@ p {
 
 @media screen and (min-width: 800px) {
     h1 {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 
     h2 {
@@ -195,8 +326,25 @@ Navbar
 ===============
 */
 nav {
+    /* background-image: url("./images/Untitled-design-2020-09-09T124652.919.png");
+    height: 50px;
+    background-size: cover;
+    background-position: center; */
     background: var(--clr-white);
     box-shadow: var(--light-shadow);
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: center;
+     height: 73px;
+    background-size: cover;
+    background-position: center; */
+}
+
+.logoNav {
+    background-image: url("./images/Untitled-design-2020-09-09T124652.919.png");
+    height: 75px;
+    background-size: cover;
+    background-position: center;
 }
 
 .nav-header {
@@ -204,6 +352,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    margin-top: 50px;
 }
 
 .nav-toggle {
@@ -220,9 +369,10 @@ nav {
     transform: rotate(90deg);
 }
 
-/*.logo {*/
-/*  height: 20px;*/
-/*}*/
+/*
+.logo {
+  height: 20px;
+} */
 
 .links a {
     color: var(--clr-grey-3);
@@ -239,7 +389,6 @@ nav {
     color: var(--clr-primary-5);
     padding-left: 1.5rem;
 }
-
 
 .links-container {
     height: 0;
@@ -293,8 +442,7 @@ nav {
         max-width: 400px;
         background: var(--white);
         border-radius: 0.25rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         padding: 2rem 2.5rem;
         margin: 3rem 0;
     }
@@ -368,3 +516,51 @@ nav {
         width: 100%;
     }
 }
+
+
+.ftco-section {
+    padding: 7em 0;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.table {
+    min-width: 1000px !important;
+    width: 50%;
+    background: #fff;
+    box-shadow: 0px 5px 12px -12px rgb(0 0 0 / 29%);
+    text-align: center;
+}
+
+.table thead.thead-primary {
+    background: #645cff;
+    border-collapse: collapse;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.table thead th {
+    border: none;
+    padding: 30px;
+    font-size: 14px;
+    color: #fff;
+}
+
+th {
+    display: table-cell;
+}
+
+.table tbody tr {
+    margin-bottom: 10px;
+}
+

@@ -15,6 +15,8 @@ import Error from "./pages/Error";
 import AdminPanel from "./pages/AdminPanel";
 import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
+import UserList from "./components/UserList";
+import IpAddress from "./components/IpAddress";
 
 
 const App = () => {
@@ -78,13 +80,37 @@ const App = () => {
                             </ProtectedRoute>
                         }/>
 
+                        <Route path='/allUsers' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <UserList/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+
+
                         {/*support*/}
-                        <Route path='/support' element={
+                        <Route
+                            path="/support"
+                            element={
+                                <ProtectedRoute user={state.user}>
+                                    <Routes>
+                                        <Route path="/" element={state.loggedIn && state.user.role === "SUPPORT" ?
+                                            <SupportPanel/> : <Error/>}></Route>
+                                    </Routes>
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path='/suspicious-ip' element={
                             <ProtectedRoute user={state.user}>
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
-                                            ? <SupportPanel/>
+                                            ? <IpAddress/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
