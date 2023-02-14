@@ -17,7 +17,9 @@ import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
 import UserList from "./components/UserList";
 import IpAddress from "./components/IpAddress";
+import SingleTransaction from "./components/SingleTransaction";
 import ChangeStatus from "./components/ChangeStatus";
+
 
 
 const App = () => {
@@ -143,6 +145,19 @@ const App = () => {
                                 </Routes>
                             </ProtectedRoute>
                         }/>
+
+                        <Route path='/transaction' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'MERCHANT'
+                                            ? <SingleTransaction/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+
                         <Route path='*' element={<Error/>}/>
 
                     </Routes>
