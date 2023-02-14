@@ -19,7 +19,6 @@ const SignIn = () => {
             if (response.data) {
                 appDispatch({type: "login", data: response.data})
                 console.log("User logged in.")
-                console.log(response.data.role)
                 if (response.data.role === 'ADMINISTRATOR') {
                     navigate("/admin")
                 } else if (response.data.role === 'SUPPORT') {

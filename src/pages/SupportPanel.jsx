@@ -23,7 +23,7 @@ const SupportPanel = () => {
               Hello, <strong>{appState.user.username}</strong>
             </li>
             <li>
-              <Link to="dashboard">All users</Link>
+              <Link to="/allUsers">All users</Link>
             </li>
             <li>
               <Link to="users">Stolen cards</Link>
