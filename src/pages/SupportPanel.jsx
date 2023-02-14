@@ -29,7 +29,7 @@ const SupportPanel = () => {
               <Link to="users">Stolen cards</Link>
             </li>
             <li>
-              <Link to="/suspicious-ip">Suspicious IPs</Link>
+              <Link to="suspicious-ip">Suspicious IPs</Link>
             </li>
             <li>
               <Link to="cards">Transactions</Link>
