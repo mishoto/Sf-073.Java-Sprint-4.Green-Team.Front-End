@@ -4,20 +4,21 @@ import Axios from "axios";
 
 const URL = "https://sf073-green-be-prod.up.railway.app/"
 
-const AllUsers = () => {
+const ChangeUserStatus = () => {
     const appState = useContext(StateContext)
+    const [users, setUsers] = useState([])
     const username = appState.user.username;
     const password = appState.user.password;
-    const [users, setUsers] = useState([])
 
-    console.log(users)
+    const [status, setStatus] = useState('LOCK');
+
 
     useEffect(() => {
         async function fetchUsers(username, password) {
             try {
                 const response = await Axios.get(`${URL}api/auth/list`, {
                     withCredentials: true,
-                    auth: {username: username, password: password},
+                    auth: {username: username, password: 'pass'},
                 })
                 setUsers(response.data)
             } catch (e) {
@@ -56,8 +57,7 @@ const AllUsers = () => {
                                                 <td>{user.name}</td>
                                                 <td>{user.username}</td>
                                                 <td>{user.role}</td>
-                                                <td>{user.unLocked ? "UNLOCKED" : "LOCKED"}</td>
-                                                <td></td>
+                                                <td>{user.unLocked === true ? 'UNLOCKED' : 'LOCKED'}</td>
                                             </tr>
                                         )
                                     })}
@@ -72,4 +72,4 @@ const AllUsers = () => {
     )
 }
 
-export default AllUsers
+export default ChangeUserStatus
