@@ -406,12 +406,14 @@ nav {
         margin: 0 auto;
         display: flex;
         align-items: center;
+
         justify-content: space-between;
         padding: 1rem;
     }
 
     .nav-header {
         padding: 0;
+        margin-top: 15px;
     }
 
     .nav-toggle {
@@ -494,7 +496,7 @@ nav {
         box-shadow: var(--shadow-1);
         transition: var(--transition);
         text-transform: capitalize;
-        display: inline-block;
+        /*display: inline-block;*/
     }
 
     .btn:hover {
@@ -512,9 +514,9 @@ nav {
         background: var(--primary-700);
     }
 
-    .btn-block {
-        width: 100%;
-    }
+    /*.btn-block {*/
+    /*    width: 100%;*/
+    /*}*/
 }
 
 
