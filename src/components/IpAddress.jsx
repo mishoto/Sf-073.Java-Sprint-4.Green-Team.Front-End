@@ -3,12 +3,14 @@ import Axios from "axios";
 import BackButton from "./BackButtonForIp";
 import GetAllBannedIps from "./GetAllBannedIps";
 import StateContext from "../StateContext";
+import InfoPopUp from "./InfoPopUp";
 
 const URL = "https://sf073-green-be-prod.up.railway.app/"
 
 const IpAddress = () => {
     const [bannedIPs, setBannedIPs] = useState([]);
     const [inputValue, setInputValue] = useState();
+    const [buttonPopup, setButtonPopup] = useState(false)
     const appState = useContext(StateContext)
     const username = appState.user.username;
     const password = appState.user.password;
@@ -29,6 +31,7 @@ const IpAddress = () => {
             );
             console.log("IP was successfully banned.");
             setBannedIPs([...bannedIPs, inputValue]);
+            setButtonPopup(true)
             setInputValue("");
         } catch (e) {
             console.log(e.response);
@@ -64,6 +67,9 @@ const IpAddress = () => {
                 <button type="button" onClick={addBannedIP}>
                     Ban IP
                 </button>
+                <InfoPopUp trigger={buttonPopup} setTrigger={setButtonPopup}>
+                    <p>IP Was Banned Successfully!</p>
+                </InfoPopUp>
             </form>
             {/*<h3 className="banned-ips-title">Banned IPs:</h3>*/}
             {/*<ul className="banned-ips-list">*/}
