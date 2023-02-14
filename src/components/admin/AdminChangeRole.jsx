@@ -1,9 +1,9 @@
 import React from 'react'
-import AdminPanel from "../pages/AdminPanel";
-import AllUsers from "./AllUsers";
+import AdminPanel from "../../pages/AdminPanel";
+import AllUsers from "../AllUsers";
 import ChangeUserRole from "./ChangeUserRole";
 
-const ChangeRole = () => {
+const AdminChangeRole = () => {
     return (
         <section>
             <AdminPanel/>
@@ -13,4 +13,4 @@ const ChangeRole = () => {
     )
 }
 
-export default ChangeRole
+export default AdminChangeRole
