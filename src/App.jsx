@@ -19,6 +19,7 @@ import UserList from "./components/UserList";
 import IpAddress from "./components/IpAddress";
 import SingleTransaction from "./components/SingleTransaction";
 import ChangeStatus from "./components/ChangeStatus";
+import SupportPanelNavBar from "./components/SupportPanelNavBar";
 
 
 
@@ -126,7 +127,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
-                                            ? <IpAddress/>
+                                            ? <SupportPanelNavBar/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
