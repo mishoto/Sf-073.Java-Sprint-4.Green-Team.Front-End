@@ -24,6 +24,7 @@ import AllUsers from "./components/AllUsers";
 import TransactionHistory from "./components/TransactionHistory";
 import SingleTransaction from "./components/SingleTransaction";
 import ChangeStatus from "./components/ChangeStatus";
+import SupportPanelNavBar from "./components/SupportPanelNavBar";
 
 
 
@@ -137,7 +138,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
-                                            ? <IpAddress/>
+                                            ? <SupportPanelNavBar/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
