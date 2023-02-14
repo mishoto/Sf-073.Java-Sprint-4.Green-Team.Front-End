@@ -50,7 +50,6 @@ const ChangeUserStatus = () => {
             </div>
         </section>
     );
-
 }
 
 export default ChangeUserStatus

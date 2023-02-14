@@ -43,7 +43,6 @@ const DeleteUser = () => {
             </div>
         </section>
     );
-
 }
 
 export default DeleteUser
