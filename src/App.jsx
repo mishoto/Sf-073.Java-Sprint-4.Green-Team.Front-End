@@ -1,7 +1,7 @@
 import React, {useState, useReducer, useEffect} from "react";
 import ReactDOM from "react-dom";
 import {useImmerReducer} from "use-immer"
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import DispatchContext from "./DispatchContext"
 import StateContext from "./StateContext"
 
@@ -17,13 +17,10 @@ import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
 import UserList from "./components/UserList";
 import IpAddress from "./components/IpAddress";
-import SharedSupportLayout from "./shared/SharedSupportLayout";
-import Transaction from "./components/Transaction";
-import StolenCard from "./components/StolenCard";
-import AllUsers from "./components/AllUsers";
-import TransactionHistory from "./components/TransactionHistory";
 import SingleTransaction from "./components/SingleTransaction";
 import ChangeStatus from "./components/ChangeStatus";
+import SupportPanelNavBar from "./components/SupportPanelNavBar";
+import ChangeRole from "./components/ChangeRole";
 
 
 
@@ -113,21 +110,26 @@ const App = () => {
                                 </Routes>
                             </ProtectedRoute>
                         }/>
+                        <Route path='/admin/changeRole' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <ChangeRole/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
 
                         {/*support*/}
                         <Route
-                            path="/support/*"
+                            path="/support"
                             element={
                                 <ProtectedRoute user={state.user}>
                                     <Routes>
                                         <Route path="/" element={state.loggedIn && state.user.role === "SUPPORT" ?
-                                            <SharedSupportLayout/> : <Error/>}></Route>
-                                        <Route index element={<SupportPanel/>}/>
-                                        <Route path='history' element={<TransactionHistory/>}/>
-                                        <Route path='allUsers' element={<AllUsers/>}/>
-                                        <Route path='stolenCards' element={<StolenCard/>}/>
-                                        <Route path='transactions' element={<Transaction/>}/>
-                                        <Route path='suspiciousIp' element={<IpAddress/>}/>
+                                            <SupportPanel/> : <Error/>}></Route>
                                     </Routes>
                                 </ProtectedRoute>
                             }
@@ -137,7 +139,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
-                                            ? <IpAddress/>
+                                            ? <SupportPanelNavBar/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
