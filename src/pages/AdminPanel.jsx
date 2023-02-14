@@ -31,6 +31,9 @@ const AdminPanel = () => {
                             <li>
                                 <Link to='/admin/changeRole'>Change user role</Link>
                             </li>
+                            <li>
+                                <Link to='/admin/deleteUser/'>Delete user</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
