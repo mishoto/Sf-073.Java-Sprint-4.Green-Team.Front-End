@@ -16,12 +16,10 @@ import AdminPanel from "./pages/AdminPanel";
 import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
 import UserList from "./components/UserList";
-import IpAddress from "./components/IpAddress";
 import SingleTransaction from "./components/SingleTransaction";
 import AdminChangeStatus from "./components/admin/AdminChangeStatus";
 import SupportPanelNavBar from "./components/SupportPanelNavBar";
 import AdminChangeRole from "./components/admin/AdminChangeRole";
-import DeleteUser from "./components/admin/DeleteUser";
 import AdminDeleteUser from "./components/admin/AdminDeleteUser";
 
 
@@ -128,7 +126,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'ADMINISTRATOR'
-                                            ? <DeleteUser/>
+                                            ? <AdminDeleteUser/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
