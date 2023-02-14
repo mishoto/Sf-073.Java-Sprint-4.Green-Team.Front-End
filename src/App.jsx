@@ -21,6 +21,7 @@ import AdminChangeStatus from "./components/admin/AdminChangeStatus";
 import SupportPanelNavBar from "./components/SupportPanelNavBar";
 import AdminChangeRole from "./components/admin/AdminChangeRole";
 import AdminDeleteUser from "./components/admin/AdminDeleteUser";
+import TransactionHistory from "./components/transactions/TransactionHistory";
 
 
 
@@ -151,6 +152,18 @@ const App = () => {
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
                                             ? <SupportPanelNavBar/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+
+                        <Route path='/transaction-history' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'SUPPORT'
+                                            ? <TransactionHistory/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>

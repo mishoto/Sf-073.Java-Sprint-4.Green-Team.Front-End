@@ -32,7 +32,7 @@ const SupportPanel = () => {
               <Link to="/suspicious-ip">Suspicious IPs</Link>
             </li>
             <li>
-              <Link to="cards">Transactions</Link>
+              <Link to="/transaction-history">Transactions</Link>
             </li>
           </ul>
         </nav>
