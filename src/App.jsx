@@ -16,11 +16,11 @@ import AdminPanel from "./pages/AdminPanel";
 import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
 import UserList from "./components/UserList";
-import IpAddress from "./components/IpAddress";
 import SingleTransaction from "./components/SingleTransaction";
-import ChangeStatus from "./components/ChangeStatus";
+import AdminChangeStatus from "./components/admin/AdminChangeStatus";
 import SupportPanelNavBar from "./components/SupportPanelNavBar";
-import ChangeRole from "./components/ChangeRole";
+import AdminChangeRole from "./components/admin/AdminChangeRole";
+import AdminDeleteUser from "./components/admin/AdminDeleteUser";
 
 
 
@@ -104,7 +104,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'ADMINISTRATOR'
-                                            ? <ChangeStatus/>
+                                            ? <AdminChangeStatus/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
@@ -115,7 +115,18 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'ADMINISTRATOR'
-                                            ? <ChangeRole/>
+                                            ? <AdminChangeRole/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path='/admin/deleteUser/' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <AdminDeleteUser/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
