@@ -9,6 +9,7 @@ const ChangeStatus = () => {
         <section>
             <AdminPanel/>
             <ChangeUserStatus/>
+            <AllUsers/>
         </section>
     )
 }

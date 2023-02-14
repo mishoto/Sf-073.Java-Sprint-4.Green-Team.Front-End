@@ -1,75 +1,57 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import StateContext from "../StateContext";
 import Axios from "axios";
+import BackButton from "./BackButtonForIp";
 
 const URL = "https://sf073-green-be-prod.up.railway.app/"
 
 const ChangeUserStatus = () => {
     const appState = useContext(StateContext)
-    const [users, setUsers] = useState([])
     const username = appState.user.username;
     const password = appState.user.password;
+    const [inputUsername, setInputUsername] = useState();
+    const [inputOperation, setInputOperation] = useState();
 
-    const [status, setStatus] = useState('LOCK');
-
-
-    useEffect(() => {
-        async function fetchUsers(username, password) {
-            try {
-                const response = await Axios.get(`${URL}api/auth/list`, {
+    const changeStatus = async (e) => {
+        e.preventDefault();
+        try {
+            await Axios.put(
+                `${URL}api/auth/access`,
+                {
+                    username: inputUsername,
+                    operation: inputOperation
+                },
+                {
                     withCredentials: true,
-                    auth: {username: username, password: 'pass'},
-                })
-                setUsers(response.data)
-            } catch (e) {
-                console.log(e.response.data)
-            }
+                    auth: {
+                        username: username,
+                        password: password,
+                    },
+                }
+            );
+            console.log("Status successfully changed")
+            setInputUsername("");
+            setInputOperation("");
+        } catch (e) {
+            console.log(e.response);
         }
-
-        fetchUsers(username, password)
-
-    }, [appState])
+    };
 
     return (
-        <section className="section">
-            <section className="ftco-section">
-                <div className="container">
-                    <div className="row justify-content-center">
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="table-wrap">
-                                <table className="table">
-                                    <thead className="thead-primary">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Username</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {users.map((user) => {
-                                        return (
-                                            <tr>
-                                                <td>{user.id}</td>
-                                                <td>{user.name}</td>
-                                                <td>{user.username}</td>
-                                                <td>{user.role}</td>
-                                                <td>{user.unLocked === true ? 'UNLOCKED' : 'LOCKED'}</td>
-                                            </tr>
-                                        )
-                                    })}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <section className='section'>
+            <div className="ban-ip-container">
+                <h2 className="ban-ip-title">Change users status</h2>
+                <form className="ban-ip-form">
+                    <input type="text" placeholder='username' value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}/>
+                    <input type="text" placeholder='operation' value={inputOperation} onChange={(e) => setInputOperation(e.target.value)}/>
+                    <button type="button" onClick={changeStatus}>
+                        Change Status
+                    </button>
+                </form>
+            </div>
         </section>
-    )
+    );
+
 }
 
 export default ChangeUserStatus

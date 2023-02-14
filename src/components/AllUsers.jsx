@@ -10,8 +10,6 @@ const AllUsers = () => {
     const password = appState.user.password;
     const [users, setUsers] = useState([])
 
-    console.log(users)
-
     useEffect(() => {
         async function fetchUsers(username, password) {
             try {
