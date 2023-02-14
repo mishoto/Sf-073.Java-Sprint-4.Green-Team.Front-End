@@ -1,25 +1,24 @@
 import React, {useContext, useState} from 'react'
-import StateContext from "../StateContext";
+import StateContext from "../../StateContext";
 import Axios from "axios";
 
 const URL = "https://sf073-green-be-prod.up.railway.app/"
 
-const ChangeUserRole = () => {
+const ChangeUserStatus = () => {
     const appState = useContext(StateContext)
     const username = appState.user.username;
     const password = appState.user.password;
     const [inputUsername, setInputUsername] = useState();
-    const [inputRole, setInputRole] = useState();
+    const [inputOperation, setInputOperation] = useState();
 
     const changeStatus = async (e) => {
         e.preventDefault();
         try {
-            console.log(inputRole)
             await Axios.put(
-                `${URL}api/auth/role`,
+                `${URL}api/auth/access`,
                 {
                     username: inputUsername,
-                    role: inputRole
+                    operation: inputOperation
                 },
                 {
                     withCredentials: true,
@@ -31,7 +30,7 @@ const ChangeUserRole = () => {
             );
             console.log("Status successfully changed")
             setInputUsername("");
-            setInputRole("");
+            setInputOperation("");
         } catch (e) {
             console.log(e.response);
         }
@@ -40,10 +39,10 @@ const ChangeUserRole = () => {
     return (
         <section className='section'>
             <div className="ban-ip-container">
-                <h2 className="ban-ip-title">Change users role</h2>
+                <h2 className="ban-ip-title">Change users status</h2>
                 <form className="ban-ip-form">
                     <input type="text" placeholder='username' value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}/>
-                    <input type="text" placeholder='role' value={inputRole} onChange={(e) => setInputRole(e.target.value)}/>
+                    <input type="text" placeholder='operation' value={inputOperation} onChange={(e) => setInputOperation(e.target.value)}/>
                     <button type="button" onClick={changeStatus}>
                         Change Status
                     </button>
@@ -54,4 +53,4 @@ const ChangeUserRole = () => {
 
 }
 
-export default ChangeUserRole
+export default ChangeUserStatus
