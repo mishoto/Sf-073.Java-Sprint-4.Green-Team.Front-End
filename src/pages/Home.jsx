@@ -7,7 +7,8 @@ import img4 from "../images/georgivase.jpg";
 const Home = () => {
   return (
     <div>
-      <h1>Anti-Fraud System By:</h1>
+
+        <h1>Anti-Fraud System By:</h1>
         <div className="team-presentation">
           <div className="member">
             <img src={img1} alt="Member 1" />
@@ -37,6 +38,7 @@ const Home = () => {
             <p>Skills: Java, Spring</p>
           </div>
         </div>
+
     </div>
   );
 };
