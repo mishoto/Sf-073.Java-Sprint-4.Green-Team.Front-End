@@ -26,7 +26,7 @@ const AdminPanel = () => {
                                 <Link to='/allUsers'>All users</Link>
                             </li>
                             <li>
-                                <Link to='users'>Change user status</Link>
+                                <Link to='/admin/changeStatus'>Change user status</Link>
                             </li>
                             <li>
                                 <Link to='cards'>Change user role</Link>
