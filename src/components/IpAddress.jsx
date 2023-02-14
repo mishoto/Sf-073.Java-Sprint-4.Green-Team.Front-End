@@ -84,7 +84,7 @@ const IpAddress = () => {
             {/*</ul>*/}
             <GetAllBannedIps/>
             {/*{bannedIPs.length === 0 && <p className="no-banned-ips-message">No IPs are banned</p>}*/}
-            <BackButton/>
+            {/*<BackButton/>*/}
 
         </div>
     );

@@ -19,7 +19,7 @@ import UserList from "./components/UserList";
 import IpAddress from "./components/IpAddress";
 import SingleTransaction from "./components/SingleTransaction";
 import ChangeStatus from "./components/ChangeStatus";
-import ChangeRole from "./components/ChangeRole";
+import SupportPanelNavBar from "./components/SupportPanelNavBar";
 
 
 
@@ -110,18 +110,6 @@ const App = () => {
                             </ProtectedRoute>
                         }/>
 
-                        <Route path='/admin/changeRole' element={
-                            <ProtectedRoute user={state.user}>
-                                <Routes>
-                                    <Route path='/' element={
-                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
-                                            ? <ChangeRole/>
-                                            : <Error/>}>
-                                    </Route>
-                                </Routes>
-                            </ProtectedRoute>
-                        }/>
-
                         {/*support*/}
                         <Route
                             path="/support"
@@ -139,7 +127,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
-                                            ? <IpAddress/>
+                                            ? <SupportPanelNavBar/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
