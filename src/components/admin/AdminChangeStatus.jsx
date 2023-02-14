@@ -1,10 +1,9 @@
 import React from 'react'
-import {Link} from "react-router-dom";
-import AdminPanel from "../pages/AdminPanel";
-import AllUsers from "./AllUsers";
+import AdminPanel from "../../pages/AdminPanel";
+import AllUsers from "../AllUsers";
 import ChangeUserStatus from "./ChangeUserStatus";
 
-const ChangeStatus = () => {
+const AdminChangeStatus = () => {
     return (
         <section>
             <AdminPanel/>
@@ -14,4 +13,4 @@ const ChangeStatus = () => {
     )
 }
 
-export default ChangeStatus
+export default AdminChangeStatus
