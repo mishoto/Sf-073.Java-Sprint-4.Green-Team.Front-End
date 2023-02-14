@@ -38,7 +38,15 @@ const Home = () => {
             <p>Skills: Java, Spring</p>
           </div>
         </div>
-
+      <section className="social-media-section">
+        <div className="color"></div>
+        <div className="color"></div>
+        <div className="color"></div>
+        <ul className="social-media">
+          <li><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+        </ul>
+      </section>
     </div>
   );
 };
