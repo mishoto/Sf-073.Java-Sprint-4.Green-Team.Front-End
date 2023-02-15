@@ -36,7 +36,10 @@ const SupportPanel = () => {
               <Link to="stolenCards">StolenCards</Link>
             </li>
             <li>
-              <Link to="transactions">Transactions</Link>
+              <Link to="/transaction-history">Transactions</Link>
+            </li>
+            <li>
+              <Link to="/change-feedback">Feedback</Link>
             </li>
           </ul>
 
