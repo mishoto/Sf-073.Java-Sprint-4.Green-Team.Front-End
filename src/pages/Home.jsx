@@ -57,6 +57,7 @@ const Home = () => {
             </div>
             <section className="social-media-section">
                 <div className="color"></div>
+                <p className="social-media-info">You can check us on the following platforms:</p>
                 <div className="color"></div>
                 <div className="color"></div>
                 <ul className="social-media">
