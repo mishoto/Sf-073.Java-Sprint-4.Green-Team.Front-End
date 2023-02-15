@@ -24,6 +24,7 @@ import AllUsers from "./components/AllUsers";
 import TransactionHistory from "./components/TransactionHistory";
 import SingleTransaction from "./components/SingleTransaction";
 import ChangeStatus from "./components/ChangeStatus";
+import SingleCard from "./components/SingleCard";
 
 
 
@@ -126,8 +127,9 @@ const App = () => {
                                         <Route path='history' element={<TransactionHistory/>}/>
                                         <Route path='allUsers' element={<AllUsers/>}/>
                                         <Route path='stolenCards' element={<StolenCard/>}/>
-                                        <Route path='transactions' element={<Transaction/>}/>
+                                        <Route path='transactions' element={<SingleTransaction/>}/>
                                         <Route path='suspiciousIp' element={<IpAddress/>}/>
+                                        <Route path='createCard' element={<SingleCard/>}/>
                                     </Routes>
                                 </ProtectedRoute>
                             }
