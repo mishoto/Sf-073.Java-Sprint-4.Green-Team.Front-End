@@ -6,7 +6,6 @@ const SharedSupportLayout = () => {
   return (
     <>
       <SupportPanel />
-      <Outlet/>
     </>
   );
 }

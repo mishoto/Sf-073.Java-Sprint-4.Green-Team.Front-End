@@ -153,7 +153,8 @@ const App = () => {
                                         <Route index element={<SupportPanel/>}/>
                                         <Route path='allUsers' element={<AllUsers/>}/>
                                         <Route path='stolenCards' element={<StolenCard/>}/>
-                                        <Route path='transactions' element={<SingleTransaction/>}/>
+                                        <Route path='transaction-history' element={<TransactionHistory/>}/>
+                                        <Route path='change-feedback' element={<PutTransactionFeedback/>}/>
                                         <Route path='suspiciousIp' element={<IpAddress/>}/>
                                         <Route path='createCard' element={<SingleCard/>}/>
                                     </Routes>
