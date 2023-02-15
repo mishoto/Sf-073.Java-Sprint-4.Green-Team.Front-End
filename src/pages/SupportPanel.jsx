@@ -1,4 +1,4 @@
-import {Link, Route} from "react-router-dom";
+import {Link, Outlet, Route} from "react-router-dom";
 import React, { useContext } from "react";
 import StateContext from "../StateContext";
 import DispatchContext from "../DispatchContext";
@@ -19,38 +19,45 @@ const SupportPanel = () => {
   }
 
   return (
-    <nav className="navbar">
-      <div className="nav-center">
-        <nav className="nav-header">
-          <ul className="links">
-            <li>
-              Hello, <strong>{appState.user.username}</strong>
-            </li>
-            <li>
-              <Link to="allUsers">All users</Link>
-            </li>
-            <li>
-              <Link to="suspiciousIp">Suspicious IPs</Link>
-            </li>
-            <li>
-              <Link to="stolenCards">StolenCards</Link>
-            </li>
-            <li>
-              <Link to="/transaction-history">Transactions</Link>
-            </li>
-            <li>
-              <Link to="/change-feedback">Feedback</Link>
-            </li>
-          </ul>
+      <>
+        <nav className="navbar">
+          <div className="nav-center">
+            <div className="nav-header">
+              <ul className="links">
+                <li>
+                  Hello, <strong>{appState.user.username}</strong>
+                </li>
+                <li>
+                  <Link to="allUsers">All users</Link>
+                </li>
+                <li>
+                  <Link to="suspiciousIp">Suspicious IPs</Link>
+                </li>
+                <li>
+                  <Link to="stolenCards">StolenCards</Link>
+                </li>
+                <li>
+                  <Link to="transaction-history">Transaction History</Link>
+                </li>
+                <li>
+                  <Link to="change-feedback">Feedback</Link>
+                </li>
+              </ul>
 
+            </div>
+            <div>
+              <button onClick={handleLogout} className="btn btn-block">
+                Sign Out
+              </button>
+            </div>
+          </div>
         </nav>
-        <div>
-          <button onClick={handleLogout} className="btn btn-block">
-            Sign Out
-          </button>
-        </div>
-      </div>
-    </nav>
+        <section>
+          <Outlet/>
+        </section>
+      </>
+
+
   );
 };
 
