@@ -28,7 +28,7 @@ const ChangeUserRole = () => {
                     },
                 }
             );
-            console.log("Role successfully changed")
+            console.log("Role of '" + inputUsername + "' successfully changed to " + inputRole)
             setInputUsername("");
             setInputRole("");
         } catch (e) {

@@ -22,7 +22,7 @@ const DeleteUser = () => {
                     },
                 }
             );
-            console.log("User successfully deleted")
+            console.log("User '" + username + "' successfully deleted")
             setUsername("");
         } catch (e) {
             console.log(e.response);
@@ -34,9 +34,10 @@ const DeleteUser = () => {
             <div className="ban-ip-container">
                 <h2 className="ban-ip-title">Delete User</h2>
                 <form className="ban-ip-form">
-                    <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <input type="text" placeholder='username' value={username}
+                           onChange={(e) => setUsername(e.target.value)}/>
                     <button type="button" onClick={deleteUser}>
-                       Delete user
+                        Delete user
                     </button>
                 </form>
             </div>
