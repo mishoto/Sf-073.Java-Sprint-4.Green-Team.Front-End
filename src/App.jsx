@@ -22,6 +22,7 @@ import SupportPanelNavBar from "./components/SupportPanelNavBar";
 import AdminChangeRole from "./components/admin/AdminChangeRole";
 import AdminDeleteUser from "./components/admin/AdminDeleteUser";
 import TransactionHistory from "./components/transactions/TransactionHistory";
+import PutTransactionFeedback from "./components/transactions/PutTransactionFeedback";
 
 
 
@@ -164,6 +165,17 @@ const App = () => {
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
                                             ? <TransactionHistory/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path='/change-feedback' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'SUPPORT'
+                                            ? <PutTransactionFeedback/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>

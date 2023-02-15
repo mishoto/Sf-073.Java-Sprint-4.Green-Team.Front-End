@@ -62,6 +62,7 @@ const TransactionHistory = () => {
                                     <th>Date</th>
                                     <th>Region</th>
                                     <th>Status</th>
+                                    <th>Feedback</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,7 @@ const TransactionHistory = () => {
                                             <td>{transactionHistory.region}</td>
                                             <td>{transactionHistory.date}</td>
                                             <td>{transactionHistory.result}</td>
+                                            <td>{transactionHistory.feedback}</td>
                                         </tr>
                                     )
                                 })}

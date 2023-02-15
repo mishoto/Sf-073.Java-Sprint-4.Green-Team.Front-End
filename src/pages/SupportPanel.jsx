@@ -34,6 +34,9 @@ const SupportPanel = () => {
             <li>
               <Link to="/transaction-history">Transactions</Link>
             </li>
+            <li>
+              <Link to="/change-feedback">Feedback</Link>
+            </li>
           </ul>
         </nav>
         <div>
