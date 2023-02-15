@@ -8,7 +8,6 @@ const AdminDeleteUser = () => {
         <section>
             <AdminPanel/>
             <DeleteUser/>
-            <AllUsers/>
         </section>
     )
 }
