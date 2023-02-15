@@ -1,7 +1,7 @@
 import React from "react";
 
 function DeleteIPPopup(props) {
-    const reload = () => window.location.reload();
+    const reload = () => window.location.href = "https://sf073-green-fe.netlify.app/support/suspiciousIp"
     const handleClose = () => {
         reload();
     };
