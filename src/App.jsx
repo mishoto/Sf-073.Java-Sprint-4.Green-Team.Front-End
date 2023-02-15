@@ -1,7 +1,7 @@
 import React, {useState, useReducer, useEffect} from "react";
 import ReactDOM from "react-dom";
 import {useImmerReducer} from "use-immer"
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import DispatchContext from "./DispatchContext"
 import StateContext from "./StateContext"
 
@@ -16,15 +16,11 @@ import AdminPanel from "./pages/AdminPanel";
 import SupportPanel from "./pages/SupportPanel";
 import MerchantPanel from "./pages/MerchantPanel";
 import UserList from "./components/UserList";
-import IpAddress from "./components/IpAddress";
-import SharedSupportLayout from "./shared/SharedSupportLayout";
-import Transaction from "./components/Transaction";
-import StolenCard from "./components/StolenCard";
-import AllUsers from "./components/AllUsers";
-import TransactionHistory from "./components/TransactionHistory";
 import SingleTransaction from "./components/SingleTransaction";
-import ChangeStatus from "./components/ChangeStatus";
-import SingleCard from "./components/SingleCard";
+import AdminChangeStatus from "./components/admin/AdminChangeStatus";
+import SupportPanelNavBar from "./components/SupportPanelNavBar";
+import AdminChangeRole from "./components/admin/AdminChangeRole";
+import AdminDeleteUser from "./components/admin/AdminDeleteUser";
 
 
 
@@ -108,7 +104,29 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'ADMINISTRATOR'
-                                            ? <ChangeStatus/>
+                                            ? <AdminChangeStatus/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path='/admin/changeRole' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <AdminChangeRole/>
+                                            : <Error/>}>
+                                    </Route>
+                                </Routes>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path='/admin/deleteUser/' element={
+                            <ProtectedRoute user={state.user}>
+                                <Routes>
+                                    <Route path='/' element={
+                                        state.loggedIn && state.user.role === 'ADMINISTRATOR'
+                                            ? <AdminDeleteUser/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
@@ -139,7 +157,7 @@ const App = () => {
                                 <Routes>
                                     <Route path='/' element={
                                         state.loggedIn && state.user.role === 'SUPPORT'
-                                            ? <IpAddress/>
+                                            ? <SupportPanelNavBar/>
                                             : <Error/>}>
                                     </Route>
                                 </Routes>
