@@ -135,12 +135,19 @@ const App = () => {
 
                         {/*support*/}
                         <Route
-                            path="/support"
+                            path="/support/*"
                             element={
                                 <ProtectedRoute user={state.user}>
                                     <Routes>
                                         <Route path="/" element={state.loggedIn && state.user.role === "SUPPORT" ?
-                                            <SupportPanel/> : <Error/>}></Route>
+                                            <SharedSupportLayout/> : <Error/>}></Route>
+                                        <Route index element={<SupportPanel/>}/>
+                                        <Route path='history' element={<TransactionHistory/>}/>
+                                        <Route path='allUsers' element={<AllUsers/>}/>
+                                        <Route path='stolenCards' element={<StolenCard/>}/>
+                                        <Route path='transactions' element={<SingleTransaction/>}/>
+                                        <Route path='suspiciousIp' element={<IpAddress/>}/>
+                                        <Route path='createCard' element={<SingleCard/>}/>
                                     </Routes>
                                 </ProtectedRoute>
                             }
