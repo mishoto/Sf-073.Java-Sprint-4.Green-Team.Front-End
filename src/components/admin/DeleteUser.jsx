@@ -13,7 +13,6 @@ const DeleteUser = () => {
     const deleteUser = async (e) => {
         e.preventDefault();
         try {
-            console.log(username)
             await Axios.delete(
                 `${URL}api/auth/user/${username}`, {
                     withCredentials: true,

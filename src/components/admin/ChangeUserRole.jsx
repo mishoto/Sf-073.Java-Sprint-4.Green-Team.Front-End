@@ -14,7 +14,6 @@ const ChangeUserRole = () => {
     const changeStatus = async (e) => {
         e.preventDefault();
         try {
-            console.log(inputRole)
             await Axios.put(
                 `${URL}api/auth/role`,
                 {

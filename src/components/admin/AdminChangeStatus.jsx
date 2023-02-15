@@ -8,7 +8,6 @@ const AdminChangeStatus = () => {
         <section>
             <AdminPanel/>
             <ChangeUserStatus/>
-            <AllUsers/>
         </section>
     )
 }

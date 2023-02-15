@@ -8,7 +8,6 @@ const AdminChangeRole = () => {
         <section>
             <AdminPanel/>
             <ChangeUserRole/>
-            <AllUsers/>
         </section>
     )
 }
