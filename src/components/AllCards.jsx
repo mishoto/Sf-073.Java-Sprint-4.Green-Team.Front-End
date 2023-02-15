@@ -9,6 +9,7 @@ const AllCards = () => {
     const username = appState.user.username;
     const password = appState.user.password;
     const [cards, setCards] = useState([])
+    const[cardNumber, setCardNumber] = useState("");
 
     const fetchCards = async (username, password) => {
         try {
@@ -22,10 +23,27 @@ const AllCards = () => {
         }
     }
 
+    const deleteCard = async (number)=>{
+        try {
+            await Axios.delete(`${URL}api/antifraud/stolencard/${number}`, {
+                withCredentials: true,
+                auth: {username: username, password: password},
+            })
+            fetchCards(username, password)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         fetchCards(username, password)
-
     }, [])
+
+    useEffect(() => {
+        deleteCard(cardNumber)
+
+    }, [cardNumber])
+
 
     return (
         <section className="section">
@@ -41,6 +59,7 @@ const AllCards = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>NUMBER</th>
+                                        <th>operation</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -49,7 +68,10 @@ const AllCards = () => {
                                             <tr>
                                                 <td>{card.id}</td>
                                                 <td>{card.number}</td>
-                                                <td></td>
+                                                <td>
+                                                    <button className="btn btn-block" type="button"
+                                                            onClick={() => setCardNumber(card.number)}>Delete</button>
+                                                </td>
                                             </tr>
                                         )
                                     })}
