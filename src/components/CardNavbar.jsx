@@ -1,5 +1,8 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
+import AllUsers from "./AllUsers";
+import StolenCard from "./StolenCard";
+import SingleTransaction from "./SingleTransaction";
 
 const CardNavbar = () => {
   return (
@@ -11,20 +14,15 @@ const CardNavbar = () => {
                         <Link to='/'>Home</Link>
                     </li>
                     <li>
-                        <Link to='dashboard'>Dashboard</Link>
+                        <Link to='allUsers'>Users454545</Link>
                     </li>
                     <li>
-                        <Link to='users'>Users454545</Link>
-                    </li>
-                    <li>
-                        <Link to='cards'>Cards</Link>
+                        <Link to='stolenCards'>Cards</Link>
                     </li>
                     <li>
                         <Link to='transactions'>Transactions</Link>
                     </li>
-                    <li>
-                        <Link to='ip'>Ip</Link>
-                    </li>
+
                 </ul>
             </nav>
         </div>
