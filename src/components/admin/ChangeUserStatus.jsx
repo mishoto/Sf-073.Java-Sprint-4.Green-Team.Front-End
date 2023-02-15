@@ -28,7 +28,7 @@ const ChangeUserStatus = () => {
                     },
                 }
             );
-            console.log("Status successfully changed")
+            console.log("User status of '" + inputUsername + "' successfully changed to " + inputOperation)
             setInputUsername("");
             setInputOperation("");
         } catch (e) {
@@ -41,8 +41,10 @@ const ChangeUserStatus = () => {
             <div className="ban-ip-container">
                 <h2 className="ban-ip-title">Change users status</h2>
                 <form className="ban-ip-form">
-                    <input type="text" placeholder='username' value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}/>
-                    <input type="text" placeholder='operation' value={inputOperation} onChange={(e) => setInputOperation(e.target.value)}/>
+                    <input type="text" placeholder='username' value={inputUsername}
+                           onChange={(e) => setInputUsername(e.target.value)}/>
+                    <input type="text" placeholder='operation' value={inputOperation}
+                           onChange={(e) => setInputOperation(e.target.value)}/>
                     <button type="button" onClick={changeStatus}>
                         Change Status
                     </button>
