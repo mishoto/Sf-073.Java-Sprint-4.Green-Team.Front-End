@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 import React, { useContext } from "react";
 import StateContext from "../StateContext";
 import DispatchContext from "../DispatchContext";
 import { useNavigate } from "react-router-dom";
+import AllUsers from "../components/AllUsers";
+import StolenCard from "../components/StolenCard";
+import SingleTransaction from "../components/SingleTransaction";
+import IpAddress from "../components/IpAddress";
 
 const SupportPanel = () => {
   const appState = useContext(StateContext);
@@ -23,13 +27,13 @@ const SupportPanel = () => {
               Hello, <strong>{appState.user.username}</strong>
             </li>
             <li>
-              <Link to="/allUsers">All users</Link>
+              <Link to="allUsers">All users</Link>
             </li>
             <li>
-              <Link to="users">Stolen cards</Link>
+              <Link to="suspiciousIp">Suspicious IPs</Link>
             </li>
             <li>
-              <Link to="/suspicious-ip">Suspicious IPs</Link>
+              <Link to="stolenCards">StolenCards</Link>
             </li>
             <li>
               <Link to="/transaction-history">Transactions</Link>
@@ -38,6 +42,7 @@ const SupportPanel = () => {
               <Link to="/change-feedback">Feedback</Link>
             </li>
           </ul>
+
         </nav>
         <div>
           <button onClick={handleLogout} className="btn btn-block">

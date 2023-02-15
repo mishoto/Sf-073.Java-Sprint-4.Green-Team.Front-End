@@ -23,7 +23,7 @@ const SignIn = () => {
                     navigate("/admin")
                 } else if (response.data.role === 'SUPPORT') {
                     navigate("/support")
-                }else if (response.data.role === 'MERCHANT') {
+                } else if (response.data.role === 'MERCHANT') {
                     navigate("/merchant")
                 }
             } else {
@@ -36,6 +36,10 @@ const SignIn = () => {
 
     return (
         <section className='section'>
+            <div className="container">
+                <span className="text1">Welcome to</span>
+                <span className="text2"><strong>Anti-Fraud System!</strong></span>
+            </div>
             <form className='form' onSubmit={handleSubmit}>
                 <h5>Sign in</h5>
                 <div className='form-row'>

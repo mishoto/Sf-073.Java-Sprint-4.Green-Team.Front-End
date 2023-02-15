@@ -42,6 +42,7 @@ const GetAllBannedIps = () => {
                 console.log("IP deleted")
             })
             .catch(error => console.error(error));
+        setButtonPopup(true)
     };
 
     return (
@@ -60,7 +61,7 @@ const GetAllBannedIps = () => {
                 {bannedIps.map((ip) => (
                     <li key={ip.id} className="banned-ip-item">{ip.ip}
                         <span className="banned-ip-value"></span>
-                        <button type="button" onClick={() => handleDelete(ip.ip) && setButtonPopup(true)}>
+                        <button type="button" onClick={() => handleDelete(ip.ip)}>
                             Unban
                         </button>
                         <DeleteIPPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
