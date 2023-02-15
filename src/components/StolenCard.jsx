@@ -1,5 +1,4 @@
 import React from 'react'
-import SupportNavbar from "./SupportNavbar";
 import AllCards from "./AllCards";
 import StolenCardNavbar from "./StolenCardNavbar";
 

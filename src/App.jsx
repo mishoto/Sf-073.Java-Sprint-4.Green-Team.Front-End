@@ -21,7 +21,11 @@ import AdminChangeStatus from "./components/admin/AdminChangeStatus";
 import SupportPanelNavBar from "./components/SupportPanelNavBar";
 import AdminChangeRole from "./components/admin/AdminChangeRole";
 import AdminDeleteUser from "./components/admin/AdminDeleteUser";
-
+import SingleCard from "./components/SingleCard";
+import SharedSupportLayout from "./shared/SharedSupportLayout";
+import AllUsers from "./components/AllUsers";
+import StolenCard from "./components/StolenCard";
+import IpAddress from "./components/IpAddress";
 
 
 const App = () => {
@@ -142,7 +146,6 @@ const App = () => {
                                         <Route path="/" element={state.loggedIn && state.user.role === "SUPPORT" ?
                                             <SharedSupportLayout/> : <Error/>}></Route>
                                         <Route index element={<SupportPanel/>}/>
-                                        <Route path='history' element={<TransactionHistory/>}/>
                                         <Route path='allUsers' element={<AllUsers/>}/>
                                         <Route path='stolenCards' element={<StolenCard/>}/>
                                         <Route path='transactions' element={<SingleTransaction/>}/>
