@@ -37,7 +37,6 @@ import IpAddress from "./components/IpAddress";
 const App = () => {
     const initialState = {
         loggedIn: Boolean(localStorage.getItem("appUsername")),
-        flashMessages: [],
         user: {
             username: localStorage.getItem("appUsername"),
             password: localStorage.getItem("appPassword"),
